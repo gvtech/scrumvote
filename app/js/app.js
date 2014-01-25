@@ -78,6 +78,7 @@ scrumvoteApp.controller('TeamVoteCtrl', ['$scope',  '$routeParams','$firebase',
   function($scope, $rootParams , $firebase) {
     console.log("in TeamVoteCtrl");
     $scope.user=$rootParams.user;
+    $scope.sprintId=$rootParams.sprintId;
     var ref = new Firebase(firebaseRoot+"/sprints/"+$rootParams.sprintId);
     $scope.refsprint = $firebase(ref);
     $scope.refsprint.$bind($scope, "sprint");

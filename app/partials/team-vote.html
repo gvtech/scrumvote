@@ -1,9 +1,9 @@
     <div class="container" ng-controler="TeamVoteCtrl">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-xs-12 col-sm-8 col-md-8">
           <ol class="breadcrumb">
             <li><a href="#">Sprints</a></li>
-            <li><a href="#/sprint-detail">{{story.Name}}</a></li>
+            <li><a href="#/sprint-detail/{{sprintId}}">{{sprint.Description}}</a></li>
             <li>{{user}}</a></li>
             <li>Team Vote</li>
           </ol>
@@ -11,7 +11,7 @@
       </div>
       
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-xs-12 col-sm-8 col-md-8">
           <div class="panel panel-info">          
             <div class="panel-heading">{{story.Name}}</div>
             <div class="panel-body">
