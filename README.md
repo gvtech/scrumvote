@@ -1,7 +1,5 @@
 # Bootstrp / AngularJS / Firebase Sample Application
 
-<<<<<<< HEAD
-
 ## ABSTRACT
 
 Example of app using bootstrap / angularJS / firebase
@@ -28,4 +26,11 @@ In this demo you can:
 
 Each vote is immediatly visible on sprint board and on other team member views
  
- 
+## REFERENCE
+Please consult for references:
+
+http://angularjs.org/
+https://github.com/angular/angular.js
+https://www.firebase.com/
+https://www.firebase.com/docs/angular/reference.html#angularfire
+https://github.com/firebase
