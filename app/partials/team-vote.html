@@ -1,6 +1,6 @@
     <div class="container" ng-controler="TeamVoteCtrl">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-sm-4">
           <ol class="breadcrumb">
             <li><a href="#">Sprints</a></li>
             <li><a href="#/sprint-detail">{{story.Name}}</a></li>
@@ -11,13 +11,16 @@
       </div>
       
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-4">
           <div class="panel panel-info">          
             <div class="panel-heading">{{story.Name}}</div>
             <div class="panel-body">
               <ul class="list-group">
                 <li ng-repeat="vote in story.Votes" class="list-group-item">
-                    {{vote.member}} <span class="badge pull-right vote">{{vote.vote}}</span>
+                    {{vote.member}} 
+                    <span ng-class="'label pull-right vote label-'+(vote.member==user?'success':'primary') ">
+                    {{vote.vote}}
+                    </span>
                 </li>
               </ul>
               <div class="button-group">

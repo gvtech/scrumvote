@@ -1,9 +1,18 @@
 'use strict';
 
-/* App Module */
+/* 
+  Scrum Vote App Module:
+  Implement router and controlers for angular / firebase binding
+*/
+
+/* please change according to your firebase DB */
+var firebaseRoot="https://scrumvote.firebaseio.com";
 
 var scrumvoteApp = angular.module('scrumvoteApp', ['ngRoute','ngResource','ui.bootstrap','firebase']);
- 
+
+/*
+  Routes
+*/ 
 scrumvoteApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
@@ -25,9 +34,12 @@ scrumvoteApp.config(['$routeProvider',
   }]);
 
 
+/*
+  Controlers
+*/ 
 scrumvoteApp.controller('SprintListCtrl', ['$scope', '$firebase',
   function ($scope, $firebase) {
-    var ref = new Firebase("https://scrumvote.firebaseio.com/sprints");
+    var ref = new Firebase(firebaseRoot+"/sprints");
     var service = $firebase(ref);
     service.$bind($scope, "sprints");
 
@@ -42,7 +54,7 @@ scrumvoteApp.controller('SprintDetailCtrl', ['$scope', '$routeParams','$firebase
   function($scope, $rootParams , $firebase) {
     console.log($rootParams.sprintId);
     $scope.sprintId=$rootParams.sprintId;
-    var ref = new Firebase("https://scrumvote.firebaseio.com/sprints/"+$rootParams.sprintId);
+    var ref = new Firebase(firebaseRoot+"/sprints/"+$rootParams.sprintId);
     var service = $firebase(ref);
     service.$bind($scope, "sprint");
   
@@ -66,19 +78,20 @@ scrumvoteApp.controller('TeamVoteCtrl', ['$scope',  '$routeParams','$firebase',
   function($scope, $rootParams , $firebase) {
     console.log("in TeamVoteCtrl");
     $scope.user=$rootParams.user;
-    var ref = new Firebase("https://scrumvote.firebaseio.com/sprints/"+$rootParams.sprintId);
+    var ref = new Firebase(firebaseRoot+"/sprints/"+$rootParams.sprintId);
     $scope.refsprint = $firebase(ref);
     $scope.refsprint.$bind($scope, "sprint");
-    $scope.refsprint.$on("loaded",function() {
-      $scope.story=$scope.sprint.Stories[$scope.sprint.currentStory];
-     } );
     $scope.refsprint.$on("change",function() {
       $scope.story=$scope.sprint.Stories[$scope.sprint.currentStory];
+      var memberVote="";
+      for (var m in $scope.story.Votes) 
+        if ($scope.story.Votes[m].member==$scope.user)
+            memberVote=$scope.story.Votes[m].vote;
+      var lv=[1,3,5,8,13,20,40];
+      $scope.fibosuite=[];
+      for (var i in lv)
+          $scope.fibosuite.push({"text":String(lv[i]),"value":lv[i],"current":(lv[i]==memberVote)});
      } );
-    var lv=[1,3,5,8,13,20,40];
-    $scope.fibosuite=[{"text":"1/2","value":0.5,"current":false}];
-    for (var i in lv)
-        $scope.fibosuite.push({"text":String(lv[i]),"value":lv[i],"current":false});
   
     $scope.submitVote = function(vote) {
       console.log("voting");
@@ -92,7 +105,9 @@ scrumvoteApp.controller('TeamVoteCtrl', ['$scope',  '$routeParams','$firebase',
 
   }]);
 
-
+/*
+  For Modal "Add New" popup
+*/
 var ModalImputNameCtrl = function ($scope, $modal, $log) {
 
   $scope.open = function (objDesc,callback) {

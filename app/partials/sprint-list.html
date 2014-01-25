@@ -22,19 +22,19 @@
               </tr>
           </thead>
         <tbody>
-          <tr ng-repeat="sprint in sprints">
+          <tr ng-repeat="sprintId in sprints.$getIndex()">
             <td>
-                <a ng-href="#/sprint-detail/{{sprints.$getIndex()[$index]}}">{{sprint.Description}}</a>
+                <a ng-href="#/sprint-detail/{{sprintId}}">{{sprints[sprintId].Description}}</a>
             </td>
             <td>
-                <span ng-class="'label label-'+{'New':'warning','Running':'success','Completed':'info'}[sprint.Status]" > 
-                  {{sprint.Status}}
+                <span ng-class="'label label-'+{'New':'warning','Running':'success','Completed':'info'}[sprints[sprintId].Status]" > 
+                  {{sprints[sprintId].Status}}
                 </span>
             </td>
             <td>
               <div class="input-group input-group-sm">
                 <span class="input-group-addon">Team</span>
-                <input type="text" class="form-control" name="team" ng-list ng-model="sprint.Team" placeholder="Team members">
+                <input type="text" class="form-control" name="team" ng-list ng-model="sprints[sprintId].Team" placeholder="Team members">
               </div>
             </td>
           </tr>
