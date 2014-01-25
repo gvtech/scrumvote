@@ -1,4 +1,4 @@
-# Bootstrp / AngularJS / Firebase Sample Application
+# Bootstrap / AngularJS / Firebase Sample Application
 
 ## ABSTRACT
 
