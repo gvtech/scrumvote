@@ -15,6 +15,10 @@ Angular binds the Html UI with the local JS ojects representation when Firebase 
 This example also illustrate how the dynamic binding can be used to build interractive apps without having to code anny backend communication layer. In this example the vote of each indiviual appear automatically on the sprint detail board and on the team.member view 
 
 ## THE DEMO
+To play vi the demo go to:
+ https://sprintvote.firebaseapp.com/#/sprint-list
+
+
 To run this demo you need to signup for a (free) firebase account.
 In this demo you can:
  - list all current sprints
