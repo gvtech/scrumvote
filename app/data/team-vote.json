@@ -1,0 +1,6 @@
+{ "User":"Paul",
+  "Story":     {
+      	"Name":"Design",
+      	"Votes":[{"member":"John", "vote":5},{"member":"Mary", "vote":8},{"member":"Paul", "vote":3}]
+      }
+}

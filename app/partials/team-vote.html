@@ -1,0 +1,32 @@
+    <div class="container" ng-controler="TeamVoteCtrl">
+      <div class="row">
+        <div class="col-md-8">
+          <ol class="breadcrumb">
+            <li><a href="#">Sprints</a></li>
+            <li><a href="#/sprint-detail">{{story.Name}}</a></li>
+            <li>{{user}}</a></li>
+            <li>Team Vote</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-info">          
+            <div class="panel-heading">{{story.Name}}</div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li ng-repeat="vote in story.Votes" class="list-group-item">
+                    {{vote.member}} <span class="badge pull-right vote">{{vote.vote}}</span>
+                </li>
+              </ul>
+              <div class="button-group">
+                <button ng-class="'btn btn-'+(vote.current?'success':'primary')" ng-repeat="vote in fibosuite" ng-click="submitVote(vote.value)">
+                  {{vote.text}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

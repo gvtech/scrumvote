@@ -1,0 +1,43 @@
+  <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <ol class="breadcrumb">
+            <li><a href="#">Sprints</a></li>
+            <li>Sprint List</li>
+          </ol>
+        </div>
+        <div class="col-md-4">
+          <div ng-controller="ModalImputNameCtrl">
+            <button class="btn btn-default" ng-click="open('Sprint',addSprint)">New Sprint</button>
+        </div>
+        </div>
+      </div>
+  
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th class="col-sm-2">Sprint</th>
+                  <th class="col-sm-1">Status</th>
+                  <th class="col-sm-2">Team</th>
+              </tr>
+          </thead>
+        <tbody>
+          <tr ng-repeat="sprint in sprints">
+            <td>
+                <a ng-href="#/sprint-detail/{{sprints.$getIndex()[$index]}}">{{sprint.Description}}</a>
+            </td>
+            <td>
+                <span ng-class="'label label-'+{'New':'warning','Running':'success','Completed':'info'}[sprint.Status]" > 
+                  {{sprint.Status}}
+                </span>
+            </td>
+            <td>
+              <div class="input-group input-group-sm">
+                <span class="input-group-addon">Team</span>
+                <input type="text" class="form-control" name="team" ng-list ng-model="sprint.Team" placeholder="Team members">
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
